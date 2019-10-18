@@ -61,21 +61,27 @@ USER jovyan
 RUN wget -q https://downloads.imagej.net/fiji/latest/fiji-nojre.zip && \
     unzip -q fiji-nojre.zip && \
     echo TODO: rm fiji-nojre.zip
-RUN wget -q https://github.com/ome/omero-insight/releases/download/v5.5.6/OMERO.imagej-5.5.6.zip && \
-    cd Fiji.app/plugins && \
-    unzip -q ../../OMERO.imagej-5.5.6.zip && \
-    echo TODO: rm OMERO.imagej-5.5.6.zip
 
-RUN wget -q https://github.com/ome/omero-insight/releases/download/v5.5.6/OMERO.insight-5.5.6.zip && \
-    unzip -q OMERO.insight-5.5.6.zip && \
-    echo TODO: rm OMERO.insight-5.5.6.zip
+ARG OMERO_INSIGHT_URL_BASE=https://users.openmicroscopy.org.uk/~spli/insight
+ARG OMERO_INSIGHT_VERSION=5.5.7-SNAPSHOT
+
+RUN wget -q ${OMERO_INSIGHT_URL_BASE}/imagej-${OMERO_INSIGHT_VERSION}.zip && \
+    cd Fiji.app/plugins && \
+    unzip -q ../../imagej-${OMERO_INSIGHT_VERSION}.zip && \
+    echo TODO: rm imagej-${OMERO_INSIGHT_VERSION}.zip
+
+RUN wget -q ${OMERO_INSIGHT_URL_BASE}/OMERO.insight-${OMERO_INSIGHT_VERSION}.zip && \
+    unzip -q OMERO.insight-${OMERO_INSIGHT_VERSION}.zip && \
+    echo TODO: rm OMERO.insight-${OMERO_INSIGHT_VERSION}.zip
 
 RUN mkdir .java && \
-    cd OMERO.insight-5.5.6 && \
+    cd OMERO.insight-${OMERO_INSIGHT_VERSION} && \
     wget -q https://www.openmicroscopy.org/img/logos/omero-logomark.svg
 # https://developer.gnome.org/desktop-entry-spec/
 #COPY --chown=${NB_UID}:${NB_GID} *.desktop /home/jovyan/Desktop/
 COPY --chown=1000:100 *.desktop /home/jovyan/Desktop/
+RUN sed -i "s%{{OMERO_INSIGHT_VERSION}}%${OMERO_INSIGHT_VERSION}%" \
+    /home/jovyan/Desktop/OMERO.insight.desktop
 # Configure default OMERO.insight server list
 #COPY --chown=${NB_UID}:${NB_GID} java_userPrefs .java/.userPrefs
 COPY --chown=1000:100 java_userPrefs .java/.userPrefs

@@ -2,6 +2,6 @@
 <!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
 <map MAP_XML_VERSION="1.0">
 <entry key="omeroConnectionSpeed" value="0"/>
-<entry key="omeroServer" value="nightshade.openmicroscopy.org:4064,outreach.openmicroscopy.org:4064,idr.openmicroscopy.org:4064,demo.openmicroscopy.org:4064"/>
+<entry key="omeroServer" value="nightshade.openmicroscopy.org:4064,outreach.openmicroscopy.org:4064,wss://idr.openmicroscopy.org/omero-ws,wss://demo.openmicroscopy.org/omero-ws"/>
 <entry key="omeroTransferEncrypted" value="true"/>
 </map>

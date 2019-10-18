@@ -1,5 +1,5 @@
 # Jupyter OMERO client Desktop
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/manics/jupyter-omeroanalysis-desktop/master?urlpath=Desktop)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/manics/jupyter-omeroanalysis-desktop/insight-5.5.7-snapshot?urlpath=Desktop)
 
 Run OMERO clients in a Linux desktop using Jupyter.
 
