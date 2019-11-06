@@ -40,6 +40,9 @@ def setup_desktop():
             '-SecurityTypes', 'None',
             '-rfbunixpath', sockets_path,
             '-fg',
+            # rfb display port is typically the listing port minus 5900,
+            # via rfc 6143: "On systems with multiple RFB servers, server N
+            # typically listens on port 5900+N"
             ':' + str(rfbport-5900),
         ],
         'port': rfbport,
